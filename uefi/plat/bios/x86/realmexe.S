@@ -296,8 +296,7 @@ Efi16BitGdt:
 
 Efi16BitGdtTable:
     .long   0x0                         # The first GDT entry is called the
-    .long   0x0                         # null descriptor, it is essentially
-                                        # unused by the processor.
+    .long   0x0                         # null descriptor, it is unused.
 
 //
 // Define the code segment descriptor.

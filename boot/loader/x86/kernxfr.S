@@ -142,8 +142,13 @@ FUNCTION(BoTransferToKernelAsm)
     addl    $-4, %ebx           # Initial address is not beyond stack.
     movl    EntryPoint(%ebp), %eax              # Get the entry point.
     movl    Parameters(%ebp), %ecx              # Get the parameter block.
-    movl    %esp, %edx          # Save the stack pointer. If the kernel ever
-                                # returned, this would need to be restored.
+
+     //
+     // If the kernel ever returned to the loader, the loader stack would need
+     // to be saved somewhere retrievable.
+     //
+
+    movl    %esp, %edx          # Save the stack pointer.
     subl    $8, %ebx            # Make room for new items on the stack.
     movl    %ecx, 4(%ebx)       # Push the parameter block.
     movl    $0, (%ebx)          # Push a dummy return address.
